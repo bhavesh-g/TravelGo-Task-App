@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Post</title>
+</head>
+<link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<body>
+<a href="/logout">Logout</a> | <a href="/dashboard">Dashboard</a> <br>
+{{message}}
+{%if messagex%}
+{{messagex}}<br>
+<a href="/create">View</a>
+{%endif%}
+{%if post_list%}
+<div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+        <h3>Edit Post</h3>
+        <hr>
+            {%for i in post_list%}
+<form action="/edit" method="post"">
+    <input type="text" name="post_id" value="{{i[1].get('_id')}}" hidden>
+        <input type="text" name="order_old" value="{{i[1].get('order')}}" hidden>
+        <input type="text" name="createdon_old" value="{{i[1].get('createdon')}}" hidden>
+    Title:  <input type="text"  name="title" placeholder="Title " value="{{i[1].get('title')}}" required><br>
+    Content: <br><textarea  name="content" id="content_id" rows="5" cols="42"  required>{{i[1].get('content')}}</textarea><br>
+    <input class="btn btn-success" type="submit" value="Update and Save">
+
+</form>
+<br><hr>
+{%endfor%}
+    </div>
+    <div class="col-lg-4"></div>
+</div>
+
+
+{%endif%}
+
+</body>
+</html>

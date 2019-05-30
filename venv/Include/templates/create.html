@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Post</title>
+</head>
+<link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<body>
+<a href="/logout">Logout</a> | <a href="/dashboard">Dashboard</a>
+<div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+        <h1 class="text-center">Create Post</h1>
+        <form id="createform" action="/create" method="post">
+    <input style="margin-left:60px;" type="text" form="createform" name="title" placeholder="Title " wrap="soft" required><br><br>
+<textarea style="border:1px solid black;margin-left:60px;" form="createform" name="content" id="content_id" rows="10" cols="42" required></textarea><br>
+    <input class="btn btn-success"style="margin-left:60px;" type="submit" value="Post">
+
+</form>
+        <br>
+
+{{messagey}}
+{%if message %}
+        <span class="badge badge-danger">{{message}} <a href="/all">here</a></span>
+{%endif%}
+{%if messagex %}
+{{messagex}}  <a href='/create'>View</a>
+{%endif%}
+    </div>
+    <div class="col-lg-3"></div>
+</div>
+
+
+{% if post_list %}
+<div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+        <h3 class="text-center">Your Posts</h3>
+        {% for i in post_list %}
+
+<table class="table table-responsive table-striped table-dark">
+    <tr >
+        <td>Author: <span class="text-primary">{{i[1].get('author').capitalize()}}</span></td>
+
+    </tr>
+
+    <tr >
+        <td>Title: <span class="text-primary">{{i[1].get('title')}}</span></td>
+    </tr>
+    <tr >
+         <td><b>{{i[1].get('content')}}</b></td>
+    </tr>
+
+    <tr >
+
+        <td>CreatedOn: <span class="text-primary">{{i[1].get('createdon')}}</span></td>
+        {%if i[1].get('edited')%}<td class="badge badge-warning">Edited</td>{%endif%}
+    </tr>
+
+</table>
+{% endfor %}
+    </div>
+
+
+
+    <div class="col-lg-3"></div>
+
+</div>
+
+
+
+{%endif%}
+
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<body>
+
+{%if message%}
+<a href="/login">Login</a> | <a href="/register">Register</a>
+        <h2 style="margin-top:5px;"class="text-center">TravelGo Intern Task App</h2>
+
+<br><br>
+{{message}}
+{%else%}
+<a href="/logout">Logout</a> | <a href="/login">Login</a> | <a href="/register">Register</a>
+<br>
+        <h2 style="margin-top:5px;"class="text-center">TravelGo Intern Task App</h2>
+
+<br>
+<h1 class="text-center">{{name}}'s Dashboard</h1>
+<br>
+<br>
+<div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+        <table class="table">
+            <tr>
+                <td>Create New Post</td>
+                <td><button class="btn btn-block btn-success" onclick="create()">Create</button></td>
+            </tr>
+
+            <tr>
+                <td>Edit old Posts</td>
+                <td><button class="btn btn-block btn-warning" onclick="edit()">Edit</button></td>
+            </tr>
+
+            <tr>
+                <td>See Everyone's Posts</td>
+                <td><button class="btn btn-block btn-primary" onclick="seeall()">See All</button></td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-lg-3"></div>
+</div>
+
+<script>
+    function create(){
+    window.location.href= "/create";
+    }
+
+    function edit(){
+    window.location.href= "/edit";
+    }
+
+    function seeall(){
+    window.location.href= "/all";
+    }
+</script>
+{%endif%}
+</body>
+</html>
